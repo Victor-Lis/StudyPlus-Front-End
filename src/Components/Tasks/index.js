@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Container } from './styles'
 
 import { IndexContext } from '../../Contexts'
@@ -9,26 +9,14 @@ import CategoriesContainer from './CategoriesContainer'
 
 export default function Tasks() {
 
-  const [selectedDay, setSelectedDay] = useState()
-  const [creating, setCreating] = useState(false)
-  const { weeks, loading } = useContext(IndexContext)
-
-  function selectDay(day){
-    if(day){
-      setSelectedDay(day)
-    }
-  }
+  const { weeks, loading, selectedDay, setSelectedDay } = useContext(IndexContext)
 
   return (
-    <Container>
+    <Container> 
 
-      {!loading && (
-        <>
-          {selectDay && <WeekContainer selectedDay={selectedDay} selectDay={selectDay} setCreating={setCreating}/>}
-          <TasksContainer selectedDay={selectedDay} creating={creating} setCreating={setCreating}/>
-        </>
-      )}
-      <CategoriesContainer/>
+      <WeekContainer all={true} />
+      <TasksContainer />
+      <CategoriesContainer />
 
     </Container>
   )

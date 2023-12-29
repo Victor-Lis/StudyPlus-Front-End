@@ -5,8 +5,12 @@ export const IndexContext = createContext({})
 
 export default function IndexProvider({children}){
     
-    const [weeks, setWeeks] = useState()
-    const [categories, setCategories] = useState()
+    const [weeks, setWeeks] = useState([])
+    const [tasks, setTasks] = useState([])
+    const [categories, setCategories] = useState([])
+    
+    const [selectedDay, setSelectedDay] = useState()
+    const [creatingTask, setCreatingTask] = useState(false)
     const [loading, setLoading] = useState(false)
 
     async function getWeeks(){
@@ -14,6 +18,19 @@ export default function IndexProvider({children}){
         api.get("/week")
         .then(res => {
             setWeeks(res.data)
+            setLoading(false)
+        })
+        .catch(e => {
+            console.log(e)
+            setLoading(false)
+        })
+    }
+
+    async function getTasks(){
+        setLoading(true)
+        api.get("/task")
+        .then(res => {
+            setTasks(res.data)
             setLoading(false)
         })
         .catch(e => {
@@ -30,85 +47,78 @@ export default function IndexProvider({children}){
         .catch(e => console.log(e))
     }
 
-    async function createTask(title, desc, primeira_hora, ultima_hora, categorie, day){
+    async function createTask(title, desc, primeira_hora, ultima_hora, categorie){
+
         setLoading(true)
-        let data;
-        
         await api.post("/task/create", {
             title,
             desc,
             primeira_hora,
             ultima_hora,
             categorie,
-            day,
-        }).then(res => {
-            data = res.data
+            day: selectedDay.id,
+        }).then(async res => {
+            selectedDay.tarefas.push(res.data)
+            setCreatingTask(false)
+            getWeeks()
+            setLoading(false)
         })
         .catch(e => {
             console.log(e)
-        })
-
-        await getWeeks()
-
-        if(data){
-            console.log(data)
             setLoading(false)
-            // return data
-        }
+        })
 
     }
 
-    async function completeTask(id, completed){
-        let data;
+    async function completeTask(id, completed, index){
 
+        setLoading(true)
         await api.post("/task/completed", {
             id,
             completed
         })
-        .then(res => {
-            data = res.data
+        .then(async res => {
+            selectedDay.tarefas.splice(index, 1, res.data)
+            getWeeks()
+            setLoading(false)
         })
         .catch(e => {
             console.log(e)
+            setLoading(false)
         })
 
-        let week = await getWeeks()
-
-        if(data){
-            return data
-        }
     }
 
-    async function deleteTask(id){
-        setLoading(true)
-        let data;
+    async function deleteTask(id, index){
 
+        setLoading(true)
         await api.post("/task/delete", {
             id,
         })
-        .then(res => {
-            data = res.data
+        .then(async res => {
+            selectedDay.tarefas.splice(index, 1)
+            getWeeks()
+            setLoading(false)
         })
         .catch(e => {
             console.log(e)
+            setLoading(false)
         })
 
-        await getWeeks()
-        
-        if(data){
-            setLoading(false)
-            return data
-        }
     }
 
     useEffect(() => {
         getWeeks()
+        getTasks()
         getCategories()
     }, [])
 
     return(
 
-        <IndexContext.Provider value={{ weeks, categories, createTask, completeTask, deleteTask, loading }}>
+        <IndexContext.Provider value={{ 
+            weeks, categories, loading, tasks, selectedDay, creatingTask, 
+            createTask, completeTask, deleteTask, setCreatingTask, setSelectedDay 
+        }}>
 
             {children}
 

@@ -6,32 +6,30 @@ import { IndexContext } from '../../../Contexts'
 import TaskCreate from '../TaskCreate'
 import Task from '../Task'
 
-export default function TasksContainer({ selectedDay, creating, setCreating }) {
+export default function TasksContainer() {
 
-  const { loading } = useContext(IndexContext)
+  const { loading, selectedDay, creatingTask, setCreatingTask, tasks } = useContext(IndexContext)
 
   return (
     <Container>
 
       <TitleRow>
         <TitleBox>
-          <TitleIcon/>
+          <TitleIcon />
           <Title> Tarefas </Title>
         </TitleBox>
-        <ButtonCreate onClick={() => setCreating(!creating)}>
-          <ButtonCreateText>Criar</ButtonCreateText>
+        <ButtonCreate onClick={() => setCreatingTask(!creatingTask)}>
+          <ButtonCreateText> {creatingTask ? 'Criando' : 'Criar'}</ButtonCreateText>
           <ButtonCreateIcon />
         </ButtonCreate>
       </TitleRow>
 
-      {creating && <TaskCreate selectedDay={selectedDay}/>}
+      {creatingTask && <TaskCreate />}
 
       <Tasks>
-        {(selectedDay && !loading) &&
-          selectedDay.tarefas.map((tarefa => {
-            return <Task key={tarefa.id} tarefa={tarefa} selectedDay={selectedDay}/>
-          }))
-        }
+        {(!!selectedDay && !!selectedDay.tarefas.length) && selectedDay.tarefas.map((tarefa, index) => {
+          return <Task key={tarefa.id} tarefa={(tarefa) && tarefa} index={index}/>
+        })} 
       </Tasks>
 
     </Container>

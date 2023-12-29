@@ -3,37 +3,29 @@ import { Container, Header, Title, TitleStrong, Options, loadingInput, InputComp
 
 import { IndexContext } from '../../../Contexts'
 
-export default function Task({ tarefa, selectedDay }) {
+export default function Task({ tarefa, index }) {
 
-  const { completeTask, deleteTask } = useContext(IndexContext)
+  const { completeTask, deleteTask, selectedDay } = useContext(IndexContext)
 
   async function handleCompleteTask() {
 
-    let data = await completeTask(tarefa.id, !tarefa.completed)
-
-    if (data) {
-      selectedDay.tarefas.map((task) => {
-        if (task.id == tarefa.id) {
-          task.completed = data.completed
-        }
-      })
-    }
+    let data = await completeTask(tarefa.id, !tarefa.completed, index)
 
   }
 
   async function handleDeleteTask() {
 
-    let data = await deleteTask(tarefa.id)
+    await deleteTask(tarefa.id, index)
 
   }
 
   return (
-    <Container border={`2.5px solid ${tarefa.Categorie.color}`}>
+    <Container border={!!tarefa.Categorie? `2.5px solid ${tarefa.Categorie.color}`: `2.5px solid transparent` }>
       <Header>
         <Title> {tarefa.title} </Title>
         <Options>
           <InputComplete type="checkbox" defaultChecked={tarefa.completed} onClick={handleCompleteTask} />
-          <EditIcon />
+          {/* <EditIcon /> */}
           <DeleteIcon onClick={handleDeleteTask} />
         </Options>
       </Header>

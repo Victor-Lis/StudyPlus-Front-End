@@ -3,7 +3,7 @@ import { Container, FormTitle, GroupTitle, GroupInput, Times, TimeBox, TimeBoxIn
 
 import { IndexContext } from '../../../Contexts'
 
-export default function TaskCreate({ selectedDay }) {
+export default function TaskCreate({  }) {
 
     const { categories, createTask } = useContext(IndexContext)
     
@@ -15,7 +15,7 @@ export default function TaskCreate({ selectedDay }) {
 
     async function handleCreate(){    
         if(title && description && firstTime && secondTime){
-            createTask(title, description, firstTime, secondTime, (!categorie ? categories[0].id : parseInt(categorie)), selectedDay.id)
+            createTask(title, description, firstTime, secondTime, (!categorie ? categories[0].id : parseInt(categorie)))
         }
     }
 
@@ -48,8 +48,8 @@ export default function TaskCreate({ selectedDay }) {
 
             <GroupTitle> Categoria </GroupTitle>
             <GroupSelect onChange={(e) => {setCategorie(e.target.value)}}>
-                {categories && categories.map((categorie) => {
-                    return <option style={{ color: categorie.color }} value={categorie.id}> {categorie.title} </option>
+                {categories.length && categories.map((categorie) => {
+                    return <option style={{ color: categorie.color }} key={categorie.id} value={categorie.id}> {categorie.title} </option>
                 })}
             </GroupSelect>
 

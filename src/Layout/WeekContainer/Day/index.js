@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Container, ContainerName, ContainerDate, ContainerHours } from './styles.js'
 
-export default function Day({ day, selectedDay, selectDay, setCreating }) {
+import { IndexContext } from '../../../Contexts/index.js'
 
+export default function Day({ day, all }) {
+
+  const { selectedDay, setSelectedDay } = useContext(IndexContext)
   const [today, setToday] = useState(new Date())
 
   function handleSelectDay() {
-    if (selectDay) {
-      selectDay(day)
-      setCreating(false)
-    }
+      setSelectedDay(day)
   }
 
   function formatNum(num){
@@ -30,10 +30,9 @@ export default function Day({ day, selectedDay, selectDay, setCreating }) {
 
   useEffect(() => {
 
-    if(day && selectDay && !selectedDay){
+    if(day && setSelectedDay && !selectedDay){
       if(formatDate(today, true) == formatDate(day.date, false)){
-        selectDay(day)
-        setCreating(false)
+        setSelectedDay(day)
       }
     }
 
@@ -41,14 +40,14 @@ export default function Day({ day, selectedDay, selectDay, setCreating }) {
 
   return (
     <Container
-      background={(selectedDay && (day.id == selectedDay.id)) ? "#fff" : undefined}
+      background={(selectedDay && (day.id == selectedDay.id) && all) ? "#fff" : undefined}
       border={(formatDate(today, true) == formatDate(day.date, false)) ? '#fff' : undefined} 
       onClick={() => handleSelectDay()}
-      hover={(selectedDay && selectDay)}
+      hover={(selectedDay && setSelectedDay && all)}
     >
-      <ContainerName color={(selectedDay && (day.id == selectedDay.id)) ? "#222222" : undefined}>{day.name}</ContainerName>
+      <ContainerName color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{day.name}</ContainerName>
       <ContainerHours>{`${formatNum(Math.floor(day.hours/60))}:${formatNum((day.hours%60))}h`}</ContainerHours>
-      <ContainerDate color={(selectedDay && (day.id == selectedDay.id)) ? "#222222" : undefined}>{new Date(day.date).getDate()}/{new Date(day.date).getMonth() + 1}/{new Date(day.date).getFullYear()}</ContainerDate>
+      <ContainerDate color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{new Date(day.date).getDate()}/{new Date(day.date).getMonth() + 1}/{new Date(day.date).getFullYear()}</ContainerDate>
     </Container>
   )
 }
