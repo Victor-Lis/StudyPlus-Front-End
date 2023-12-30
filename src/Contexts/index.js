@@ -148,11 +148,13 @@ export default function IndexProvider({children}){
             color,
         }).then(async res => {
             setCategories(categories => [...categories, res.data])
+            setCreatingCategorie(false)
             getWeeks()
             setLoading(false)
         })
         .catch(e => {
             console.log(e)
+            setCreatingCategorie(false)
             setLoading(false)
         })
 

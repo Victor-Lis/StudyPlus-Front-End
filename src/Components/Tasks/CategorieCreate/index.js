@@ -11,8 +11,6 @@ export default function TaskCreate({ }) {
     const [color, setColor] = useState("#000")
 
     async function handleCreate() {
-        console.log(title)
-        console.log(color)
         if (title && color) {
             createCategorie(title, color)
         }
