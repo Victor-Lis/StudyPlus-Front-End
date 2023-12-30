@@ -3,7 +3,7 @@ import { Container, FormTitle, GroupTitle, GroupInput, Times, TimeBox, TimeBoxIn
 
 import { IndexContext } from '../../../Contexts'
 
-export default function TaskCreate({ }) {
+export default function CategorieCreate({ }) {
 
     const { categories, createTask, updatingTask, setUpdatingTask, updateTask } = useContext(IndexContext)
 

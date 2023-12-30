@@ -3,7 +3,20 @@ import { Container, TitleBox, Title, Options, EditIcon, DeleteIcon, } from './st
 
 import { IndexContext } from '../../../Contexts'
 
-export default function Categorie({ categorie }) {
+export default function Categorie({ categorie, index }) {
+
+  const { 
+    creatingCategorie,
+    setCreatingCategorie,
+    setUpdatingCategorie,
+    deleteCategorie, 
+  } = useContext(IndexContext)
+
+  async function handleEditCategorie(){
+    categorie["index"] = index
+    setUpdatingCategorie(categorie)
+    setCreatingCategorie(!creatingCategorie)
+  }
 
   return (
     <Container>
@@ -12,8 +25,8 @@ export default function Categorie({ categorie }) {
         <Title> {categorie.title} </Title>
       </TitleBox>
       <Options>
-        <EditIcon />
-        <DeleteIcon />
+        <EditIcon onClick={() => handleEditCategorie()}/>
+        <DeleteIcon onClick={() => deleteCategorie(categorie.id, index)}/>
       </Options>
 
     </Container>
