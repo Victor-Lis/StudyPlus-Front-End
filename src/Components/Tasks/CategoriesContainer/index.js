@@ -13,7 +13,7 @@ export default function CategoriesContainer({ }) {
 
     setUpdatingCategorie()
     setCreatingCategorie(!creatingCategorie)
-    
+
   }
 
   return (
@@ -24,7 +24,7 @@ export default function CategoriesContainer({ }) {
           <TitleIcon />
           <Title> Categorias </Title>
         </TitleBox>
-        <ButtonCreate onClick={() => setCreatingCategorie(!creatingCategorie)}>
+        <ButtonCreate onClick={() => handleCloseCreatingAndEditing()}>
           <ButtonCreateText>{!!creatingCategorie && !!updatingCategorie ? 'Editando': !!creatingCategorie && !updatingCategorie? 'Criando' : 'Criar'}</ButtonCreateText>
           <ButtonCreateIcon />
         </ButtonCreate>
