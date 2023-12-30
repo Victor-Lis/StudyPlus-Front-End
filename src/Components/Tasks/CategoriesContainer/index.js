@@ -7,7 +7,14 @@ import Categorie from '../Categorie'
 
 export default function CategoriesContainer({ }) {
 
-  const { categories, creatingCategorie, setCreatingCategorie } = useContext(IndexContext)
+  const { categories, creatingCategorie, setUpdatingCategorie, updatingCategorie, setCreatingCategorie } = useContext(IndexContext)
+
+  function handleCloseCreatingAndEditing(){
+
+    setUpdatingCategorie()
+    setCreatingCategorie(!creatingCategorie)
+    
+  }
 
   return (
     <Container>
@@ -17,8 +24,8 @@ export default function CategoriesContainer({ }) {
           <TitleIcon />
           <Title> Categorias </Title>
         </TitleBox>
-        <ButtonCreate>
-          <ButtonCreateText onClick={() => setCreatingCategorie(!creatingCategorie)}>Criar</ButtonCreateText>
+        <ButtonCreate onClick={() => setCreatingCategorie(!creatingCategorie)}>
+          <ButtonCreateText>{!!creatingCategorie && !!updatingCategorie ? 'Editando': !!creatingCategorie && !updatingCategorie? 'Criando' : 'Criar'}</ButtonCreateText>
           <ButtonCreateIcon />
         </ButtonCreate>
       </TitleRow>

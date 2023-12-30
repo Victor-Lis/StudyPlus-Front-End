@@ -8,7 +8,14 @@ import Task from '../Task'
 
 export default function TasksContainer() {
 
-  const { loading, selectedDay, creatingTask, setCreatingTask, tasks } = useContext(IndexContext)
+  const { loading, selectedDay, creatingTask, setCreatingTask, tasks, updatingTask, setUpdatingTask } = useContext(IndexContext)
+
+  function handleCloseCreatingAndEditing(){
+
+    setUpdatingTask()
+    setCreatingTask(!creatingTask)
+    
+  }
 
   return (
     <Container>
@@ -18,8 +25,8 @@ export default function TasksContainer() {
           <TitleIcon />
           <Title> Tarefas </Title>
         </TitleBox>
-        <ButtonCreate onClick={() => setCreatingTask(!creatingTask)}>
-          <ButtonCreateText> {creatingTask ? 'Criando' : 'Criar'}</ButtonCreateText>
+        <ButtonCreate onClick={() => handleCloseCreatingAndEditing()}>
+          <ButtonCreateText>{!!creatingTask && !!updatingTask ? 'Editando': !!creatingTask && !updatingTask? 'Criando' : 'Criar'}</ButtonCreateText>
           <ButtonCreateIcon />
         </ButtonCreate>
       </TitleRow>
