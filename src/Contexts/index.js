@@ -11,6 +11,7 @@ export default function IndexProvider({children}){
     
     const [selectedDay, setSelectedDay] = useState()
     const [creatingTask, setCreatingTask] = useState(false)
+    const [updatingTask, setUpdatingTask] = useState()
     const [loading, setLoading] = useState(false)
 
     async function getWeeks(){
@@ -70,6 +71,34 @@ export default function IndexProvider({children}){
 
     }
 
+    async function updateTask(){
+
+        setLoading(true)
+        await api.post("/task/update", {
+            id: updatingTask.id,
+            title: updatingTask.title,
+            desc: updatingTask.desc,
+            primeira_hora: updatingTask.primeira_hora,
+            ultima_hora: updatingTask.ultima_hora,
+            categorie: updatingTask.categorie,
+        })
+        .then(async res => {
+            selectedDay.tarefas.splice(updatingTask.index, 1, res.data)
+            console.log(selectedDay.tarefas)
+            setUpdatingTask()
+            setCreatingTask(false)
+            getWeeks()
+            setLoading(false)
+        })
+        .catch(e => {
+            console.log(e)
+            setUpdatingTask()
+            setCreatingTask(false)
+            setLoading(false)
+        })
+
+    }
+
     async function completeTask(id, completed, index){
 
         setLoading(true)
@@ -116,8 +145,8 @@ export default function IndexProvider({children}){
     return(
 
         <IndexContext.Provider value={{ 
-            weeks, categories, loading, tasks, selectedDay, creatingTask, 
-            createTask, completeTask, deleteTask, setCreatingTask, setSelectedDay 
+            weeks, categories, loading, tasks, selectedDay, creatingTask, updatingTask, 
+            createTask, completeTask, deleteTask, setCreatingTask, setSelectedDay, setUpdatingTask, updateTask
         }}>
 
             {children}

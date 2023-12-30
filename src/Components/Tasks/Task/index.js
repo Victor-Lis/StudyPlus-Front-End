@@ -5,11 +5,28 @@ import { IndexContext } from '../../../Contexts'
 
 export default function Task({ tarefa, index }) {
 
-  const { completeTask, deleteTask, selectedDay } = useContext(IndexContext)
+  const { 
+    completeTask, deleteTask, 
+    updatingTask, setUpdatingTask,
+    creatingTask, setCreatingTask
+  } = useContext(IndexContext)
 
   async function handleCompleteTask() {
 
     let data = await completeTask(tarefa.id, !tarefa.completed, index)
+
+  }
+
+  async function handleEditing(){
+
+    if(creatingTask){
+      setCreatingTask(false)
+      setUpdatingTask()
+    }else{
+      setCreatingTask(true)
+      tarefa["index"] = index
+      setUpdatingTask(tarefa)
+    }
 
   }
 
@@ -25,7 +42,7 @@ export default function Task({ tarefa, index }) {
         <Title> {tarefa.title} </Title>
         <Options>
           <InputComplete type="checkbox" defaultChecked={tarefa.completed} onClick={handleCompleteTask} />
-          {/* <EditIcon /> */}
+          <EditIcon onClick={handleEditing}/>
           <DeleteIcon onClick={handleDeleteTask} />
         </Options>
       </Header>
