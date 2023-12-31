@@ -199,8 +199,6 @@ export default function Day({ day, all }) {
 ```
 ### Screenshots
 
-![User](https://github.com/Victor-Lis/React-LanchesPlus/blob/master/src/ScreenShots/User.png)
-
 ![HomeScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%201.png)
 
 ![HomeScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%202.png)
@@ -216,6 +214,26 @@ export default function Day({ day, all }) {
 ![Editando Tarefa](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Editando%20Tarefa.png)
 
 ![Editando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Editando%20Categoria.png)
+
+## Restante do projeto
+[Study+ BackEnd](https://github.com/Victor-Lis/StudyPlus-Back-End)
+
+## Instalação do Projeto
+```cmd
+git clone https://github.com/Victor-Lis/StudyPlus-Front-End & git clone https://github.com/Victor-Lis/StudyPlus-Back-End
+```
+
+## Inicialização 
+No endereço do repositório do Front-End
+```cmd
+npm start
+```
+
+No endereço do repositório do Back-End
+```cmd
+npm run dev
+```
+
 ## Autores
 
 - [@Victor-Lis](https://github.com/Victor-Lis)
