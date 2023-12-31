@@ -199,19 +199,23 @@ export default function Day({ day, all }) {
 ```
 ### Screenshots
 
+#### Home 
 ![HomeScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%201.png)
 
 ![HomeScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%202.png)
 
+#### Tarefas
+Selecionando dia
 ![TarefasScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%201.png)
 
+Visualizando categorias
 ![TarefasScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%202.png)
 
 ![Criando Tarefa](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Criando%20Tarefa.png)
 
-![Criando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Criando%20Categoria.png)
-
 ![Editando Tarefa](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Editando%20Tarefa.png)
+
+![Criando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Criando%20Categoria.png)
 
 ![Editando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Editando%20Categoria.png)
 
