@@ -9,16 +9,10 @@ export default function Day({ day, all }) {
   const [today, setToday] = useState(new Date())
 
   function handleSelectDay() {
-      setSelectedDay(day)
+    setSelectedDay(day)
   }
 
-  function formatNum(num){
-    if(num < 10){
-      return "0"+num
-    }else{
-      return num
-    }
-  }
+  const formatNum = (num) => num < 10? "0"+num: num
 
   function formatDate(date, objectDate){
     if(objectDate){
@@ -47,7 +41,7 @@ export default function Day({ day, all }) {
     >
       <ContainerName color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{day.name}</ContainerName>
       <ContainerHours>{`${formatNum(Math.floor(day.hours/60))}:${formatNum((day.hours%60))}h`}</ContainerHours>
-      <ContainerDate color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{new Date(day.date).getDate()}/{new Date(day.date).getMonth() + 1}/{new Date(day.date).getFullYear()}</ContainerDate>
+      <ContainerDate color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{formatNum(new Date(day.date).getDate())}/{formatNum(new Date(day.date).getMonth() + 1)}/{new Date(day.date).getFullYear()}</ContainerDate>
     </Container>
   )
 }

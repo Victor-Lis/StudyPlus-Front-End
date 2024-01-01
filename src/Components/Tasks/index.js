@@ -9,8 +9,6 @@ import CategoriesContainer from './CategoriesContainer'
 
 export default function Tasks() {
 
-  const { weeks, loading, selectedDay, setSelectedDay } = useContext(IndexContext)
-
   return (
     <Container> 
 
