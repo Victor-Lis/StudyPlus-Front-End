@@ -1,70 +1,243 @@
-# Getting Started with Create React App
+# Study+ Front End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Study+ BackEnd](https://github.com/Victor-Lis/StudyPlus-Back-End)
 
-## Available Scripts
+Esse é um projeto que ainda tenho muitos planos, essa ainda é a versão 1, mas já tenho em mente features futuras. Falando dele em si, eu já tinha esse projeto em mente há alguns meses, conversava bastante sobre a ideia com o [@Vinicius-Buava](https://github.com/Vinicius-B-Leite), além de já ter feito uma "versão anterior" desse projeto, mas ele estava bem simples e foi um dos meus primeiros projetos em Node, então existiam muitas melhoras a serem feitas.
 
-In the project directory, you can run:
+O projeto consiste em um sistema para ajudar a organizar seu tempo disposto em atividades mais focadas como estudo, sendo possível inclusive programar tarefas futuras(dentro do prazo de uma semana) para ajudar na organização. 
 
-### `npm start`
+É possível criar as próprias "categorias", que serão atribuidas as atividades.
+## Desafios
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Requisições HTTP vindas da API do projeto;
+- Telas dinâmicas em relação aos dados;
+- Delay mínimo ao manipular dados;
+- Visual Responsivo.
+## Aprendizados
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Por final aprendi algumas coisas interessantes como: 
+## Na prática
 
-### `npm test`
+### Axios 
+Nesse projeto irei utilizar o Axios ao invés do tão comum fetch(), que já usei bastante em outros projetos. O Axios será o responsável por requisições HTTP. 
+```js
+import axios from "axios";
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const api = axios.create({
 
-### `npm run build`
+    baseURL: 'http://localhost:4000'
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+})
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default api;
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### useContext
+Criação do "IndexContext" e algumas funções para manipular o Banco que serão uteis em outras telas. O useContext() é o responsável por repassar os dados vindos e manipulados pelo Axios.
+```js
+import React, {useState, useEffect, createContext} from 'react'
+import api from '../Connections/axios'
 
-### `npm run eject`
+export const IndexContext = createContext({})
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+export default function IndexProvider({children}){
+    
+    const [weeks, setWeeks] = useState([])
+    const [tasks, setTasks] = useState([])
+    const [categories, setCategories] = useState([])
+    
+    const [creatingTask, setCreatingTask] = useState(false)
+    const [updatingTask, setUpdatingTask] = useState()
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    const [creatingCategorie, setCreatingCategorie] = useState(false)
+    const [updatingCategorie, setUpdatingCategorie] = useState()
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    const [selectedDay, setSelectedDay] = useState()
+    const [loading, setLoading] = useState(false)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    async function getWeeks(){...}
 
-## Learn More
+    async function getTasks(){...}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    async function getCategories(){...}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    async function createTask(title, desc, primeira_hora, ultima_hora, categorie){...}
 
-### Code Splitting
+    async function updateTask(){...}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    async function completeTask(id, completed, index){...}
 
-### Analyzing the Bundle Size
+    async function deleteTask(id, index){...}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    async function createCategorie(title, color){...}
 
-### Making a Progressive Web App
+    async function updateCategorie(){...}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    async function deleteCategorie(id, index){...}
 
-### Advanced Configuration
+    useEffect(() => {
+        getWeeks()
+        getTasks()
+        getCategories()
+    }, [])
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    return(
 
-### Deployment
+        <IndexContext.Provider value={{ 
+            weeks, categories, loading, tasks, selectedDay, creatingTask, updatingTask, creatingCategorie, updatingCategorie,
+            createTask, completeTask, deleteTask, setCreatingTask, setSelectedDay, setUpdatingTask, updateTask, setCreatingCategorie, setUpdatingCategorie, createCategorie, deleteCategorie, updateCategorie
+        }}>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+            {children}
 
-### `npm run build` fails to minify
+        </IndexContext.Provider>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    )
+}
+
+```
+
+### React-Router-DOM
+O React-Router-DOM é o responsável pela sistema de navegações do projeto.
+```js
+import React from 'react'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Navbar from '../Layout/Navbar';
+
+import Home from '../Components/Home';
+import Tasks from '../Components/Tasks';
+
+export default function Router() {
+  return (
+    <BrowserRouter>
+
+      <Navbar/>
+    
+      <Routes>
+
+        <Route path='/' element={<Home/>}/>
+        <Route path='/tasks' element={<Tasks/>}/>
+
+      </Routes>
+
+    </BrowserRouter>
+  )
+}
+
+```
+
+
+### Um componente que merece destaque é o "WeekContainer"
+Está no "layout" pois será utilizado em mais de uma tela. Esse componente tem uma característica muito bacana, ele pode ser alterado a partir da props "all", que pode ser "true" ou "false", sendo assim ela é booleana.
+
+Se a prop "all" for "false", ele apenas colocará um borda branca no entorno do dia atual.
+
+Se a prop "all" for "true", ele permitirá a opção de selecionar um dia, deixando-o com as cores invertidas e ativando a propriedade :hover ao passar o mouse sobre um dia.
+
+Essa possibilidade de alteração de estilo através de uma prop se torna muito fácil graças a utilização de um biblioteca que tenho muito carinho, a biblioteca "styled-components".
+#### src/Layout/WeekContainer/index
+```js
+import React, { useState, useContext, useEffect } from 'react'
+import { Container, Title, TitleStrong, Days } from './styles.js'
+
+import { IndexContext } from '../../Contexts/index.js'
+import Day from './Day/index.js'
+
+export default function WeekContainer({setCreating, all}) {
+
+  const { weeks } = useContext(IndexContext)
+
+  function formatNum(num){...}
+
+  return (
+    <Container>
+        <Title> Semana {!!weeks.length && weeks[0].id} - <TitleStrong>{!!weeks.length && `${formatNum(Math.floor(weeks[0].hours/60))}:${formatNum((weeks[0].hours%60))}h`}</TitleStrong> </Title>
+        <Days>
+        {!!weeks.length && !!weeks[0].days && weeks[0].days.map((day) => {
+            return <Day key={day.id} day={day} setCreating={setCreating} all={all}/>
+        })}
+        </Days>
+    </Container>
+  )
+}
+```
+
+#### src/Layout/WeekContainer/Day/index
+```js
+import React, { useState, useEffect, useContext } from 'react'
+import { Container, ContainerName, ContainerDate, ContainerHours } from './styles.js'
+
+import { IndexContext } from '../../../Contexts/index.js'
+
+export default function Day({ day, all }) {
+
+  const { selectedDay, setSelectedDay } = useContext(IndexContext)
+  const [today, setToday] = useState(new Date())
+
+  function handleSelectDay(){...}
+
+  function formatNum(num){...}
+
+  function formatDate(date, objectDate){...}
+
+  useEffect(() => {...}, [day])
+
+  return (
+    <Container
+      background={(selectedDay && (day.id == selectedDay.id) && all) ? "#fff" : undefined}
+      border={(formatDate(today, true) == formatDate(day.date, false)) ? '#fff' : undefined} 
+      onClick={() => handleSelectDay()}
+      hover={(selectedDay && setSelectedDay && all)}
+    >
+      <ContainerName color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{day.name}</ContainerName>
+      <ContainerHours>{`${formatNum(Math.floor(day.hours/60))}:${formatNum((day.hours%60))}h`}</ContainerHours>
+      <ContainerDate color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{new Date(day.date).getDate()}/{new Date(day.date).getMonth() + 1}/{new Date(day.date).getFullYear()}</ContainerDate>
+    </Container>
+  )
+}
+```
+### Screenshots
+
+#### Home 
+![HomeScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%201.png)
+
+![HomeScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%202.png)
+
+#### Tarefas
+Selecionando dia
+![TarefasScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%201.png)
+
+Visualizando categorias
+![TarefasScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%202.png)
+
+![Criando Tarefa](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Criando%20Tarefa.png)
+
+![Editando Tarefa](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Editando%20Tarefa.png)
+
+![Criando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Criando%20Categoria.png)
+
+![Editando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Editando%20Categoria.png)
+
+## Restante do projeto
+[Study+ BackEnd](https://github.com/Victor-Lis/StudyPlus-Back-End)
+
+## Instalação do Projeto
+```cmd
+git clone https://github.com/Victor-Lis/StudyPlus-Front-End & git clone https://github.com/Victor-Lis/StudyPlus-Back-End
+```
+
+## Inicialização 
+No endereço do repositório do Front-End
+```cmd
+npm start
+```
+
+No endereço do repositório do Back-End
+```cmd
+npm run dev
+```
+
+## Autores
+
+- [@Victor-Lis](https://github.com/Victor-Lis)
