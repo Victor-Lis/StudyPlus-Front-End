@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Container } from './styles'
 
 import BannerHome from './BannerHome'
@@ -8,7 +8,7 @@ import { IndexContext } from '../../Contexts'
 
 export default function Home() {
 
-  const { weeks, loading } = useContext(IndexContext)
+  const { loading } = useContext(IndexContext)
 
   return (
     <Container>

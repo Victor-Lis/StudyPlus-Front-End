@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Container, Header, Title, TitleStrong, Options, loadingInput, InputComplete, EditIcon, DeleteIcon, Content, ContentDescription, TimeRow, TimeBox, TimePin, Time, TimeText, TimeFlag } from './styles'
+import React, { useContext } from 'react'
+import { Container, Header, Title, Options, InputComplete, EditIcon, DeleteIcon, Content, ContentDescription, TimeRow, TimeBox, TimePin, TimeText, TimeFlag } from './styles'
 
 import { IndexContext } from '../../../Contexts'
 
@@ -7,13 +7,13 @@ export default function Task({ tarefa, index }) {
 
   const { 
     completeTask, deleteTask, 
-    updatingTask, setUpdatingTask,
+    setUpdatingTask,
     creatingTask, setCreatingTask
   } = useContext(IndexContext)
 
   async function handleCompleteTask() {
 
-    let data = await completeTask(tarefa.id, !tarefa.completed, index)
+    await completeTask(tarefa.id, !tarefa.completed, index)
 
   }
 

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Container, Title, TitleStrong, Days } from './styles.js'
 
 import { IndexContext } from '../../Contexts/index.js'

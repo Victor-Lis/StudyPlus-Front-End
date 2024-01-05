@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Container, TitleRow, TitleBox, Title, TitleIcon, ButtonCreate, ButtonCreateText, ButtonCreateIcon, Tasks } from './styles'
 
 import { IndexContext } from '../../../Contexts'
@@ -8,7 +8,7 @@ import Task from '../Task'
 
 export default function TasksContainer() {
 
-  const { loading, selectedDay, creatingTask, setCreatingTask, tasks, updatingTask, setUpdatingTask } = useContext(IndexContext)
+  const { selectedDay, creatingTask, setCreatingTask, updatingTask, setUpdatingTask } = useContext(IndexContext)
 
   function handleCloseCreatingAndEditing(){
 

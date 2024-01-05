@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Container, FormTitle, GroupTitle, GroupInput, Times, TimeBox, TimeBoxInput, TimeBoxRow, TimeBoxTitle, TimeBoxIconPin, TimeBoxIconFlag, GroupSelect, ButtonCreate, ButtonCreateText, ButtonCreateIcon } from './styles'
+import React, { useState, useContext } from 'react'
+import { Container, FormTitle, GroupTitle, GroupInput, Times, TimeBox, TimeBoxInput, TimeBoxRow, TimeBoxTitle, TimeBoxIconPin, TimeBoxIconFlag, GroupSelect, ButtonCreate, ButtonCreateText } from './styles'
 
 import { IndexContext } from '../../../Contexts'
 
-export default function CategorieCreate({ }) {
+export default function CategorieCreate() {
 
     const { categories, createTask, updatingTask, setUpdatingTask, updateTask } = useContext(IndexContext)
 
@@ -57,7 +57,7 @@ export default function CategorieCreate({ }) {
                         <GroupSelect onChange={(e) => setUpdatingTask({ ...updatingTask, categorie: e.target.value })} >
                             <option style={{ color: updatingTask.Categorie.color }} key={updatingTask.Categorie.id} value={updatingTask.Categorie.id}> {updatingTask.Categorie.title} </option>
                             {categories.length && categories.map((categorie) => {
-                                if(categorie.id != updatingTask.Categorie.id){
+                                if(categorie.id !== updatingTask.Categorie.id){
                                     return <option style={{ color: categorie.color }} key={categorie.id} value={categorie.id}> {categorie.title} </option>
                                 }
                             })}

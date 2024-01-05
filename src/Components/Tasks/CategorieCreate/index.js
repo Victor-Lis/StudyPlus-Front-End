@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Container, FormTitle, GroupTitle, GroupInput, GroupInputColor, Times, TimeBox, TimeBoxInput, TimeBoxRow, TimeBoxTitle, TimeBoxIconPin, TimeBoxIconFlag, GroupSelect, ButtonCreate, ButtonCreateText, ButtonCreateIcon } from './styles'
+import React, { useState, useContext } from 'react'
+import { Container, FormTitle, GroupTitle, GroupInput, GroupInputColor, ButtonCreate, ButtonCreateText, } from './styles'
 
 import { IndexContext } from '../../../Contexts'
 
-export default function TaskCreate({ }) {
+export default function TaskCreate() {
 
     const { createCategorie, updatingCategorie, setUpdatingCategorie, updateCategorie } = useContext(IndexContext)
 

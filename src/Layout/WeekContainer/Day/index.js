@@ -25,7 +25,7 @@ export default function Day({ day, all }) {
   useEffect(() => {
 
     if(day && setSelectedDay && !selectedDay){
-      if(formatDate(today, true) == formatDate(day.date, false)){
+      if(formatDate(today, true) === formatDate(day.date, false)){
         setSelectedDay(day)
       }
     }
@@ -34,14 +34,14 @@ export default function Day({ day, all }) {
 
   return (
     <Container
-      background={(selectedDay && (day.id == selectedDay.id) && all) ? "#fff" : undefined}
-      border={(formatDate(today, true) == formatDate(day.date, false)) ? '#fff' : undefined} 
+      background={(selectedDay && (day.id === selectedDay.id) && all) ? "#fff" : undefined}
+      border={(formatDate(today, true) === formatDate(day.date, false)) ? '#fff' : undefined} 
       onClick={() => handleSelectDay()}
       hover={(selectedDay && setSelectedDay && all)}
     >
-      <ContainerName color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{day.name}</ContainerName>
+      <ContainerName color={(selectedDay && (day.id === selectedDay.id) && all) ? "#222222" : undefined}>{day.name}</ContainerName>
       <ContainerHours>{`${formatNum(Math.floor(day.hours/60))}:${formatNum((day.hours%60))}h`}</ContainerHours>
-      <ContainerDate color={(selectedDay && (day.id == selectedDay.id) && all) ? "#222222" : undefined}>{formatNum(new Date(day.date).getDate())}/{formatNum(new Date(day.date).getMonth() + 1)}/{new Date(day.date).getFullYear()}</ContainerDate>
+      <ContainerDate color={(selectedDay && (day.id === selectedDay.id) && all) ? "#222222" : undefined}>{formatNum(new Date(day.date).getDate())}/{formatNum(new Date(day.date).getMonth() + 1)}/{new Date(day.date).getFullYear()}</ContainerDate>
     </Container>
   )
 }

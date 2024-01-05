@@ -88,7 +88,6 @@ export default function IndexProvider({children}){
         })
         .then(async res => {
             selectedDay.tarefas.splice(updatingTask.index, 1, res.data)
-            console.log(selectedDay.tarefas)
             setUpdatingTask()
             setCreatingTask(false)
             getWeeks()

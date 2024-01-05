@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Container, TitleRow, TitleBox, Title, TitleIcon, ButtonCreate, ButtonCreateText, ButtonCreateIcon, Tasks } from './styles'
 
 import { IndexContext } from '../../../Contexts'
 import CategorieCreate from '../CategorieCreate'
 import Categorie from '../Categorie'
 
-export default function CategoriesContainer({ }) {
+export default function CategoriesContainer() {
 
   const { categories, creatingCategorie, setUpdatingCategorie, updatingCategorie, setCreatingCategorie } = useContext(IndexContext)
 

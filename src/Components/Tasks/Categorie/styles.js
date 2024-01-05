@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FiEdit, FiTrash2, FiMapPin, FiFlag } from 'react-icons/fi'
+import { FiEdit, FiTrash2, } from 'react-icons/fi'
 
 export const Container = styled.div`
 
