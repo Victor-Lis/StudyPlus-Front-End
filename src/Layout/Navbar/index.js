@@ -22,8 +22,8 @@ export default function Navbar({page}) {
 
                 <>
                 
-                    <NavLink to="/"> Home </NavLink>
-                    <NavLink to="/tasks"> Tarefas </NavLink>
+                    <NavLink to="/" onClick={() => setOpen(!open)}> Home </NavLink>
+                    <NavLink to="/tasks" onClick={() => setOpen(!open)}> Tarefas </NavLink>
                 
                 </>
 

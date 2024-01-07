@@ -5,7 +5,7 @@ export const Banner = styled.div`
     padding: 4.5% 0;
     width: 100%;
     background-color: #282828;
-    margin: 1.5% 0;
+    margin: .5% 0;
 
     display: flex;
     justify-content: center;
