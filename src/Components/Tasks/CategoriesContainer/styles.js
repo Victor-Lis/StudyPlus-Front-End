@@ -76,7 +76,7 @@ export const ButtonCreateIcon = styled(FiPlus)`
 `
 
 
-export const Tasks = styled.div`
+export const Categories = styled.div`
 
     width: 90%;
     padding: 0 5%;

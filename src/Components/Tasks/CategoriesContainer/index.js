@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
-import { Container, TitleRow, TitleBox, Title, TitleIcon, ButtonCreate, ButtonCreateText, ButtonCreateIcon, Tasks } from './styles'
+import { Container, TitleRow, TitleBox, Title, TitleIcon, ButtonCreate, ButtonCreateText, ButtonCreateIcon, Categories } from './styles'
 
-import { IndexContext } from '../../../Contexts'
+import { CategorieContext } from '../../../Contexts/categories'
+
 import CategorieCreate from '../CategorieCreate'
 import Categorie from '../Categorie'
 
 export default function CategoriesContainer() {
 
-  const { categories, creatingCategorie, setUpdatingCategorie, updatingCategorie, setCreatingCategorie } = useContext(IndexContext)
+  const { categories, creatingCategorie, setUpdatingCategorie, updatingCategorie, setCreatingCategorie } = useContext(CategorieContext)
 
   function handleCloseCreatingAndEditing(){
 
@@ -32,13 +33,13 @@ export default function CategoriesContainer() {
 
       {creatingCategorie && <CategorieCreate />}
 
-      <Tasks>
+      <Categories>
         {categories &&
           categories.map(((categorie, index) => {
             return <Categorie key={categorie.id} categorie={categorie} index={index}/>
           }))
         }
-      </Tasks>
+      </Categories>
 
     </Container>
   )

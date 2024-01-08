@@ -12,9 +12,6 @@ export default function IndexProvider({children}){
     const [creatingTask, setCreatingTask] = useState(false)
     const [updatingTask, setUpdatingTask] = useState()
 
-    const [creatingCategorie, setCreatingCategorie] = useState(false)
-    const [updatingCategorie, setUpdatingCategorie] = useState()
-
     const [selectedDay, setSelectedDay] = useState()
     const [loading, setLoading] = useState(false)
 
@@ -139,81 +136,16 @@ export default function IndexProvider({children}){
 
     }
 
-    async function createCategorie(title, color){
-
-        setLoading(true)
-        await api.post("/categorie/create", {
-            title,
-            color,
-        }).then(async res => {
-            setCategories(categories => [...categories, res.data])
-            setCreatingCategorie(false)
-            getWeeks()
-            setLoading(false)
-        })
-        .catch(e => {
-            console.log(e)
-            setCreatingCategorie(false)
-            setLoading(false)
-        })
-
-    }
-
-    async function updateCategorie(){
-
-        setLoading(true)
-        await api.post("/categorie/update", {
-            id: updatingCategorie.id,
-            title: updatingCategorie.title,
-            color: updatingCategorie.color
-        })
-        .then(async res => {
-            categories.splice(updatingCategorie.index, 1, res.data)
-            setUpdatingCategorie()
-            setCreatingCategorie(false)
-            getWeeks()
-            setLoading(false)
-        })
-        .catch(e => {
-            console.log(e)
-            setUpdatingCategorie()
-            setCreatingCategorie(false)
-            setLoading(false)
-        })
-
-    }
-
-    async function deleteCategorie(id, index){
-
-        setLoading(true)
-        await api.post("/categorie/delete", {
-            id,
-        })
-        .then(async res => {
-            let newCategories = categories
-            newCategories.splice(index, 1)
-            setCategories(newCategories)
-            getWeeks()
-            setLoading(false)
-        })
-        .catch(e => {
-            console.log(e)
-            setLoading(false)
-        })
-
-    }
-
     useEffect(() => {
         getWeeks()
         getTasks()
-        getCategories()
     }, [])
 
     return(
 
         <IndexContext.Provider value={{ 
-            weeks, categories, loading, tasks, selectedDay, creatingTask, updatingTask, creatingCategorie, updatingCategorie,
-            createTask, completeTask, deleteTask, setCreatingTask, setSelectedDay, setUpdatingTask, updateTask, setCreatingCategorie, setUpdatingCategorie, createCategorie, deleteCategorie, updateCategorie
+            weeks, categories, loading, tasks, selectedDay, creatingTask, updatingTask,
+            getWeeks, createTask, completeTask, deleteTask, setCreatingTask, setSelectedDay, setUpdatingTask, updateTask,
         }}>
 
             {children}
