@@ -16,8 +16,8 @@ export const Container = styled.div`
 
 export const Card = styled.div`
 
-    background-color: rgba(70,10,220, 0.05);
-    border: 2px solid rgb(70,10,220);
+    background-color: rgba(62, 189, 255, 0.05);
+    border: 2px solid #3EBDFF;
     padding: 2% 3%;
     margin: 3% 2.5%;
 
