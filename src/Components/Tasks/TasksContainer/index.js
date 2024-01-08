@@ -2,19 +2,21 @@ import React, { useContext } from 'react'
 import { Container, TitleRow, TitleBox, Title, TitleIcon, ButtonCreate, ButtonCreateText, ButtonCreateIcon, Tasks } from './styles'
 
 import { IndexContext } from '../../../Contexts'
+import { TaskContext } from '../../../Contexts/tasks'
 
 import TaskCreate from '../TaskCreate'
 import Task from '../Task'
 
 export default function TasksContainer() {
 
-  const { selectedDay, creatingTask, setCreatingTask, updatingTask, setUpdatingTask } = useContext(IndexContext)
+  const { selectedDay, } = useContext(IndexContext)
+  const { creatingTask, setCreatingTask, updatingTask, setUpdatingTask } = useContext(TaskContext)
 
-  function handleCloseCreatingAndEditing(){
+  function handleCloseCreatingAndEditing() {
 
     setUpdatingTask()
     setCreatingTask(!creatingTask)
-    
+
   }
 
   return (
@@ -26,7 +28,7 @@ export default function TasksContainer() {
           <Title> Tarefas </Title>
         </TitleBox>
         <ButtonCreate onClick={() => handleCloseCreatingAndEditing()}>
-          <ButtonCreateText>{!!creatingTask && !!updatingTask ? 'Editando': !!creatingTask && !updatingTask? 'Criando' : 'Criar'}</ButtonCreateText>
+          <ButtonCreateText>{!!creatingTask && !!updatingTask ? 'Editando' : !!creatingTask && !updatingTask ? 'Criando' : 'Criar'}</ButtonCreateText>
           <ButtonCreateIcon />
         </ButtonCreate>
       </TitleRow>
@@ -35,8 +37,8 @@ export default function TasksContainer() {
 
       <Tasks>
         {(!!selectedDay && !!selectedDay.tarefas.length) && selectedDay.tarefas.map((tarefa, index) => {
-          return <Task key={tarefa.id} tarefa={(tarefa) && tarefa} index={index}/>
-        })} 
+          return <Task key={tarefa.id} tarefa={(tarefa) && tarefa} index={index} />
+        })}
       </Tasks>
 
     </Container>

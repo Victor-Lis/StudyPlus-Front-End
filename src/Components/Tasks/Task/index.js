@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Container, Header, Title, Options, InputComplete, EditIcon, DeleteIcon, Content, ContentDescription, TimeRow, TimeBox, TimePin, TimeText, TimeFlag } from './styles'
 
-import { IndexContext } from '../../../Contexts'
+import { TaskContext } from '../../../Contexts/tasks'
 
 export default function Task({ tarefa, index }) {
 
@@ -9,7 +9,7 @@ export default function Task({ tarefa, index }) {
     completeTask, deleteTask, 
     setUpdatingTask,
     creatingTask, setCreatingTask
-  } = useContext(IndexContext)
+  } = useContext(TaskContext)
 
   async function handleCompleteTask() {
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from './styles'
 
 import CategorieProvider from '../../Contexts/categories'
+import TaskProvider from '../../Contexts/tasks'
 
 import WeekContainer from '../../Layout/WeekContainer'
 import TasksContainer from './TasksContainer'
@@ -16,7 +17,11 @@ export default function Tasks() {
 
       <CategorieProvider>
 
-        <TasksContainer />
+        <TaskProvider>
+
+          <TasksContainer />
+
+        </TaskProvider>
         <CategoriesContainer />
 
       </CategorieProvider>
