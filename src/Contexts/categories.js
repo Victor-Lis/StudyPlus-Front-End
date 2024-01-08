@@ -6,12 +6,14 @@ export const CategorieContext = createContext({})
 
 export default function IndexProvider({ children }) {
 
-    const { categories } = useContext(IndexContext)
+    const { categories, weeks } = useContext(IndexContext)
     const [allTasks, setAllTasks] = useState()
     
     const [selectedCategorie, setSelectedCategorie] = useState()
     const [percentage, setPercentage] = useState(0)
     const [categorieTasksCount, setCategorieTasksCount] = useState(0)
+
+    const [hoursInThisWeek, setHoursInThisWeek] = useState()
 
     function handleSetSelectedCategorie(categorie) {
         setSelectedCategorie(categorie)
@@ -22,6 +24,9 @@ export default function IndexProvider({ children }) {
         let percentage = (specificCount / allTasksCount) * 100;
         setPercentage(percentage)
         setCategorieTasksCount(specificCount)
+
+        let weekFirstDay = weeks[0]?.days[0]
+        console.log(weekFirstDay)
     }
 
     async function getAllTasks() {

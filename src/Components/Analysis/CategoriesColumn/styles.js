@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 25%;
+  flex: 1;
   min-width: 280px;
   padding: 0% 2.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const Categorie = styled.h1`
@@ -13,7 +17,7 @@ export const Categorie = styled.h1`
     border-radius: ${props => props.background? "0px": "10px"};
 
     padding: 1.5% 2%;
-    margin: 4.5% 0;
+    margin: 4.5% 3%;
 
     text-align: center;
 
