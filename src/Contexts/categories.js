@@ -7,7 +7,7 @@ export const CategorieContext = createContext({})
 export default function IndexProvider({ children }) {
 
     const { categories, weeks } = useContext(IndexContext)
-    const [allTasks, setAllTasks] = useState()
+    const [allTasks, setAllTasks] = useState([])
     const [tasksWithCategorieInThisWeek, setTasksWithCategorieInThisWeek] = useState()
     const [allTasksInThisWeek, setAllTasksInThisWeek] = useState()
 
@@ -21,6 +21,7 @@ export default function IndexProvider({ children }) {
     const [percentage, setPercentage] = useState(0)
     const [categorieTasksCount, setCategorieTasksCount] = useState(0)
 
+    const formatHour = (hour, restHour) => hour < 10? `0${hour}:${restHour < 10? '0'+restHour: restHour}`: `${hour}:${restHour < 10? '0'+restHour: restHour}`
 
     function handleSetSelectedCategorie(categorie) {
         setSelectedCategorie(categorie)
@@ -35,7 +36,7 @@ export default function IndexProvider({ children }) {
         let weekFirstDay = weeks[0]?.days[0]
         let weekLastDay = weeks[0]?.days[6]
 
-        let tasksWithCategorieInThisWeek = specificCount.filter((task) => task.day >= weekFirstDay && task.day <= weekLastDay)
+        let tasksWithCategorieInThisWeek = specificCount.filter((task) => task.day >= weekFirstDay?.id && task.day <= weekLastDay?.id)
         setTasksWithCategorieInThisWeek(tasksWithCategorieInThisWeek.length)
 
         let tasksInThisWeek = allTasks.filter((task) => task.day >= weekFirstDay && task.day <= weekLastDay).length
@@ -46,30 +47,28 @@ export default function IndexProvider({ children }) {
         allTasksCompleted?.map((task) => {
             allTasksHours+=task.hours
         })
-        setAllHours(parseInt(allTasksHours/60))
+        setAllHours(allTasksHours)
 
         let categorieTasksCompleted = allTasks.filter((task) => task.completed && task.categorie == categorie.id)
         let categorieTasksHours = 0;
         categorieTasksCompleted?.map((task) => {
             categorieTasksHours+=task.hours
         })
-        setAllHoursInCategorie(parseInt(categorieTasksHours/60))
+        setAllHoursInCategorie(categorieTasksHours)
 
-        let tasksCompletedInThisWeek = allTasks.filter((task) => task.completed && (task.day >= weekFirstDay && task.day <= weekLastDay))
+        let tasksCompletedInThisWeek = allTasks.filter((task) => task.categorie && (task.day >= weekFirstDay?.id && task.day <= weekLastDay?.id))
         let tasksCompletedInThisWeekHours = 0;
         tasksCompletedInThisWeek?.map((task) => {
             tasksCompletedInThisWeekHours+=task.hours
         })
-        console.log(tasksCompletedInThisWeek)
-        setHoursInThisWeek(parseInt(tasksCompletedInThisWeekHours/60))
+        setHoursInThisWeek(tasksCompletedInThisWeekHours)
 
         let categorieTasksCompletedInThisWeek = tasksCompletedInThisWeek.filter((task) => task.completed && task.categorie == categorie.id)
         let categorieTasksCompletedInThisWeekHours = 0;
         categorieTasksCompletedInThisWeek?.map((task) => {
             categorieTasksCompletedInThisWeekHours+=task.hours
         })
-        console.log(categorieTasksCompletedInThisWeek)
-        setCategorieHoursInThisWeek(parseInt(categorieTasksCompletedInThisWeekHours/60))
+        setCategorieHoursInThisWeek(categorieTasksCompletedInThisWeekHours)
 
     }
 
@@ -84,20 +83,22 @@ export default function IndexProvider({ children }) {
     }
 
     useEffect(() => {
-        getAllTasks()
-    }, [])
+        if(categories.length > 0){
+            handleSetSelectedCategorie(categories[0])
+        }
+    }, [allTasks])
 
     useEffect(() => {
         if (categories.length > 0) {
-            console.log(categories)
-            handleSetSelectedCategorie(categories[0])
+            getAllTasks()
         }
     }, [categories])
 
     return (
 
         <CategorieContext.Provider value={{ selectedCategorie, handleSetSelectedCategorie, percentage, allTasks, 
-        categorieTasksCount, tasksWithCategorieInThisWeek, allTasksInThisWeek, allHours, allHoursInCategorie }}>
+        categorieTasksCount, tasksWithCategorieInThisWeek, allTasksInThisWeek, allHours, allHoursInCategorie,
+        hoursInThisWeek, categorieHoursInThisWeek }}>
 
             {children}
 

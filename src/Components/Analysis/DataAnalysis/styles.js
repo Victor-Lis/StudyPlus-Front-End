@@ -19,7 +19,7 @@ export const Card = styled.div`
     background-color: rgba(70,10,220, 0.05);
     border: 2px solid rgb(70,10,220);
     padding: 2% 3%;
-    margin: 2.5% 1.5%;
+    margin: 3% 2.5%;
 
     min-width: 90%;
 

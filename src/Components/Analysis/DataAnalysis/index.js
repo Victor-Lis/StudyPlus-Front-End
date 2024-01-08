@@ -8,7 +8,9 @@ export default function DataAnalysis() {
 
   const { categories } = useContext(IndexContext)
   const { selectedCategorie, percentage, allTasks, categorieTasksCount, tasksWithCategorieInThisWeek, 
-    allTasksInThisWeek, allHours, allHoursInCategorie } = useContext(CategorieContext)
+    allTasksInThisWeek, allHours, allHoursInCategorie, hoursInThisWeek, categorieHoursInThisWeek } = useContext(CategorieContext)
+
+    const formatNum = (num) => num < 10? `0${num}`: num
 
   return (
     <Container>
@@ -26,8 +28,13 @@ export default function DataAnalysis() {
         </Card>
 
         <Card background={selectedCategorie?.color}>
-          <CardTitle><CardStrong color={selectedCategorie?.color}>{allHoursInCategorie}</CardStrong>h de {allHours}h no total foram investidas na categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong></CardTitle>
+          <CardTitle><CardStrong color={selectedCategorie?.color}>{formatNum(parseInt(allHoursInCategorie/60))}:{formatNum(allHoursInCategorie%60)}</CardStrong>h de {formatNum(parseInt(allHours/60))}:{formatNum(allHours%60)}h no total foram investidas na categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong></CardTitle>
         </Card>
+
+        <Card background={selectedCategorie?.color}>
+          <CardTitle><CardStrong color={selectedCategorie?.color}>{formatNum(parseInt(categorieHoursInThisWeek/60))}:{formatNum(categorieHoursInThisWeek%60)}</CardStrong>h de {formatNum(parseInt(hoursInThisWeek/60))}:{formatNum(hoursInThisWeek%60)}h dessa semana foram investidas na categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong></CardTitle>
+        </Card>
+
 
     </Container>  
   )
