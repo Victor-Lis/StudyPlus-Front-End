@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { Container, FormTitle, GroupTitle, GroupInput, GroupInputColor, ButtonCreate, ButtonCreateText, } from './styles'
 
-import { IndexContext } from '../../../Contexts'
+import { CategorieContext } from '../../../Contexts/categories'
 
 export default function TaskCreate() {
 
-    const { createCategorie, updatingCategorie, setUpdatingCategorie, updateCategorie } = useContext(IndexContext)
+    const { createCategorie, updatingCategorie, setUpdatingCategorie, updateCategorie } = useContext(CategorieContext)
 
     const [title, setTitle] = useState()
     const [color, setColor] = useState("#000")
