@@ -22,7 +22,7 @@ export default function Navbar({page}) {
 
                 <>
                 
-                    <NavLink to="/" onClick={() => setOpen(!open)}> Home </NavLink>
+                    <NavLink to="/" onClick={() => setOpen(!open)}> Início </NavLink>
                     <NavLink to="/tasks" onClick={() => setOpen(!open)}> Tarefas </NavLink>
                     <NavLink to="/analysis" onClick={() => setOpen(!open)}> Análise </NavLink>
 
