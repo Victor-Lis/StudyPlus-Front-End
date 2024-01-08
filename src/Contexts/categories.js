@@ -36,11 +36,11 @@ export default function IndexProvider({ children }) {
         let weekFirstDay = weeks[0]?.days[0]
         let weekLastDay = weeks[0]?.days[6]
 
-        let tasksWithCategorieInThisWeek = specificCount.filter((task) => task.day >= weekFirstDay?.id && task.day <= weekLastDay?.id)
+        let tasksWithCategorieInThisWeek = specificCount.filter((task) => (task.day >= weekFirstDay?.id && task.day <= weekLastDay.id) && (task.categorie == categorie.id) && task.completed)
         setTasksWithCategorieInThisWeek(tasksWithCategorieInThisWeek.length)
 
-        let tasksInThisWeek = allTasks.filter((task) => task.day >= weekFirstDay && task.day <= weekLastDay).length
-        setAllTasksInThisWeek(tasksInThisWeek)
+        let tasksInThisWeek = allTasks.filter((task) => (task.day >= weekFirstDay?.id && task.day <= weekLastDay.id) && task.completed)
+        setAllTasksInThisWeek(tasksInThisWeek.length)
 
         let allTasksCompleted = allTasks.filter((task) => task.completed)
         let allTasksHours = 0;

@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const Categorie = styled.h1`
     background: ${props => props.background};
     color: #fff;
-    box-shadow: ${props => props.selected? "0px 0px 0px 3px #202020, 0px 0px 0px 5px #3EBDFF": `0px 0px 0px 3px ${props.background}`};
+    box-shadow: ${props => props.selected? "0px 0px 0px 3px #202020, 0px 0px 0px 5px #FFF": `0px 0px 0px 3px ${props.background}`};
     border-radius: ${props => props.background? "0px": "10px"};
 
     padding: 1.5% 2%;
