@@ -7,16 +7,21 @@ import { IndexContext } from '../../../Contexts/'
 export default function DataAnalysis() {
 
   const { categories } = useContext(IndexContext)
-  const { selectedCategorie, percentage, allTasks, categorieTasksCount } = useContext(CategorieContext)
+  const { selectedCategorie, percentage, allTasks, categorieTasksCount, tasksWithCategorieInThisWeek, allTasksInThisWeek } = useContext(CategorieContext)
 
   return (
     <Container>
+
         <Card background={selectedCategorie?.color}>
-          <CardTitle> <CardStrong color={selectedCategorie?.color}>{percentage.toFixed(2)}%</CardStrong> das tarefas são com a categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong> </CardTitle>
+          <CardTitle> <CardStrong color={selectedCategorie?.color}>{percentage.toFixed(2)}%</CardStrong> das tarefas totais tem a categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong> </CardTitle>
         </Card>
 
         <Card background={selectedCategorie?.color}>
-          <CardTitle> <CardStrong color={selectedCategorie?.color}>{categorieTasksCount}</CardStrong> de {allTasks?.length} tarefas são com a categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong> </CardTitle>
+          <CardTitle> <CardStrong color={selectedCategorie?.color}>{categorieTasksCount}</CardStrong> de {allTasks?.length} tarefas tem a categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong> </CardTitle>
+        </Card>
+
+        <Card background={selectedCategorie?.color}>
+        <CardTitle><CardStrong color={selectedCategorie?.color}>{tasksWithCategorieInThisWeek}</CardStrong>/{allTasksInThisWeek} tarefas essa semana tem a categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong></CardTitle>
         </Card>
 
     </Container>  

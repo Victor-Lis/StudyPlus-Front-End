@@ -8,7 +8,9 @@ export default function IndexProvider({ children }) {
 
     const { categories, weeks } = useContext(IndexContext)
     const [allTasks, setAllTasks] = useState()
-    
+    const [tasksWithCategorieInThisWeek, setTasksWithCategorieInThisWeek] = useState()
+    const [allTasksInThisWeek, setAllTasksInThisWeek] = useState()
+
     const [selectedCategorie, setSelectedCategorie] = useState()
     const [percentage, setPercentage] = useState(0)
     const [categorieTasksCount, setCategorieTasksCount] = useState(0)
@@ -19,14 +21,18 @@ export default function IndexProvider({ children }) {
         setSelectedCategorie(categorie)
 
         let allTasksCount = allTasks.length
-        let specificCount = allTasks.filter((task) => task.categorie == categorie.id).length
+        let specificCount = allTasks.filter((task) => task.categorie == categorie.id)
 
-        let percentage = (specificCount / allTasksCount) * 100;
+        let percentage = (specificCount.length / allTasksCount) * 100;
         setPercentage(percentage)
-        setCategorieTasksCount(specificCount)
+        setCategorieTasksCount(specificCount.length)
 
         let weekFirstDay = weeks[0]?.days[0]
-        console.log(weekFirstDay)
+        let weekLastDay = weeks[0]?.days[6]
+        let tasksWithCategorieInThisWeek = specificCount.filter((task) => task.day >= weekFirstDay && task.day <= weekLastDay)
+        setTasksWithCategorieInThisWeek(tasksWithCategorieInThisWeek.length)
+        let tasksInThisWeek = allTasks.filter((task) => task.day >= weekFirstDay && task.day <= weekLastDay).length
+        setAllTasksInThisWeek(tasksInThisWeek)
     }
 
     async function getAllTasks() {
@@ -52,7 +58,7 @@ export default function IndexProvider({ children }) {
 
     return (
 
-        <CategorieContext.Provider value={{ selectedCategorie, handleSetSelectedCategorie, percentage, allTasks, categorieTasksCount }}>
+        <CategorieContext.Provider value={{ selectedCategorie, handleSetSelectedCategorie, percentage, allTasks, categorieTasksCount, tasksWithCategorieInThisWeek, allTasksInThisWeek }}>
 
             {children}
 
