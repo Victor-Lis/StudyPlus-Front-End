@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { Container, FormTitle, GroupTitle, GroupInput, Times, TimeBox, TimeBoxInput, TimeBoxRow, TimeBoxTitle, TimeBoxIconPin, TimeBoxIconFlag, GroupSelect, ButtonCreate, ButtonCreateText } from './styles'
 
-import { IndexContext } from '../../../Contexts'
+import { TaskContext } from '../../../Contexts/tasks'
 import { CategorieContext } from '../../../Contexts/categories'
 
 export default function CategorieCreate() {
 
     const { categories, } = useContext(CategorieContext)
-    const { createTask, updatingTask, setUpdatingTask, updateTask } = useContext(IndexContext)
+    const { createTask, updatingTask, setUpdatingTask, updateTask } = useContext(TaskContext)
 
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()

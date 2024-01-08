@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Container, TitleBox, Title, Options, EditIcon, DeleteIcon, } from './styles'
 
-import { IndexContext } from '../../../Contexts'
+import { CategorieContext } from '../../../Contexts/categories'
 
 export default function Categorie({ categorie, index }) {
 
@@ -10,7 +10,7 @@ export default function Categorie({ categorie, index }) {
     setCreatingCategorie,
     setUpdatingCategorie,
     deleteCategorie, 
-  } = useContext(IndexContext)
+  } = useContext(CategorieContext)
 
   async function handleEditCategorie(){
     categorie["index"] = index
