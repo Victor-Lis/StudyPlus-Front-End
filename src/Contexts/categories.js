@@ -47,14 +47,14 @@ export default function IndexProvider({ children }) {
         allTasksCompleted?.map((task) => {
             allTasksHours+=task.hours
         })
-        setAllHours(allTasksHours)
+        setAllHours(parseInt(allTasksHours/60))
 
         let categorieTasksCompleted = allTasks.filter((task) => task.completed && task.categorie == categorie.id)
         let categorieTasksHours = 0;
         categorieTasksCompleted?.map((task) => {
             categorieTasksHours+=task.hours
         })
-        setAllHours(categorieTasksHours)
+        setAllHoursInCategorie(parseInt(categorieTasksHours/60))
 
     }
 
@@ -81,7 +81,8 @@ export default function IndexProvider({ children }) {
 
     return (
 
-        <CategorieContext.Provider value={{ selectedCategorie, handleSetSelectedCategorie, percentage, allTasks, categorieTasksCount, tasksWithCategorieInThisWeek, allTasksInThisWeek }}>
+        <CategorieContext.Provider value={{ selectedCategorie, handleSetSelectedCategorie, percentage, allTasks, 
+        categorieTasksCount, tasksWithCategorieInThisWeek, allTasksInThisWeek, allHours, allHoursInCategorie }}>
 
             {children}
 
