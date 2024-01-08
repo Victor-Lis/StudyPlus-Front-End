@@ -35,7 +35,6 @@ export default function DataAnalysis() {
           <CardTitle><CardStrong color={selectedCategorie?.color}>{formatNum(parseInt(categorieHoursInThisWeek/60))}:{formatNum(categorieHoursInThisWeek%60)}</CardStrong>h de {formatNum(parseInt(hoursInThisWeek/60))}:{formatNum(hoursInThisWeek%60)}h dessa semana foram investidas na categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong></CardTitle>
         </Card>
 
-
     </Container>  
   )
 }
