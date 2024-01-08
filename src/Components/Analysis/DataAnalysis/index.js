@@ -2,13 +2,17 @@ import React, { useContext } from 'react'
 import { Container, Card, CardTitle, CardStrong } from './styles'
 
 import { CategorieContext } from '../../../Contexts/categories'
-import { IndexContext } from '../../../Contexts/'
 
 export default function DataAnalysis() {
 
-  const { categories } = useContext(IndexContext)
-  const { selectedCategorie, percentage, allTasks, categorieTasksCount, tasksWithCategorieInThisWeek, 
-    allTasksInThisWeek, allHours, allHoursInCategorie, hoursInThisWeek, categorieHoursInThisWeek } = useContext(CategorieContext)
+  const {  
+    selectedCategorie, 
+    percentage, 
+    allTasks, categorieTasksCount, 
+    tasksWithCategorieInThisWeek, allTasksInThisWeek, 
+    allHours, allHoursInCategorie, 
+    hoursInThisWeek, categorieHoursInThisWeek 
+  } = useContext(CategorieContext)
 
     const formatNum = (num) => num < 10? `0${num}`: num
 
