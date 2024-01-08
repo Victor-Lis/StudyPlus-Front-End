@@ -11,11 +11,16 @@ export default function IndexProvider({ children }) {
     const [tasksWithCategorieInThisWeek, setTasksWithCategorieInThisWeek] = useState()
     const [allTasksInThisWeek, setAllTasksInThisWeek] = useState()
 
+    const [allHours, setAllHours] = useState()
+    const [allHoursInCategorie, setAllHoursInCategorie] = useState()
+
+    const [hoursInThisWeekInCategorie, setHoursInThisWeekInCategorie] = useState()
+    const [hoursInThisWeek, setHoursInThisWeek] = useState()
+    
     const [selectedCategorie, setSelectedCategorie] = useState()
     const [percentage, setPercentage] = useState(0)
     const [categorieTasksCount, setCategorieTasksCount] = useState(0)
 
-    const [hoursInThisWeek, setHoursInThisWeek] = useState()
 
     function handleSetSelectedCategorie(categorie) {
         setSelectedCategorie(categorie)
@@ -29,10 +34,28 @@ export default function IndexProvider({ children }) {
 
         let weekFirstDay = weeks[0]?.days[0]
         let weekLastDay = weeks[0]?.days[6]
+
         let tasksWithCategorieInThisWeek = specificCount.filter((task) => task.day >= weekFirstDay && task.day <= weekLastDay)
         setTasksWithCategorieInThisWeek(tasksWithCategorieInThisWeek.length)
+
         let tasksInThisWeek = allTasks.filter((task) => task.day >= weekFirstDay && task.day <= weekLastDay).length
         setAllTasksInThisWeek(tasksInThisWeek)
+
+        let allTasksCompleted = allTasks.filter((task) => task.completed)
+        console.log(allTasksCompleted)
+        let allTasksHours = 0;
+        allTasksCompleted?.map((task) => {
+            allTasksHours+=task.hours
+        })
+        setAllHours(allTasksHours)
+
+        let categorieTasksCompleted = allTasks.filter((task) => task.completed && task.categorie == categorie.id)
+        let categorieTasksHours = 0;
+        categorieTasksCompleted?.map((task) => {
+            categorieTasksHours+=task.hours
+        })
+        setAllHours(categorieTasksHours)
+
     }
 
     async function getAllTasks() {
