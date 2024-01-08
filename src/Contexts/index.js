@@ -7,7 +7,6 @@ export default function IndexProvider({children}){
     
     const [weeks, setWeeks] = useState([])
     const [tasks, setTasks] = useState([])
-    const [categories, setCategories] = useState([])
     
     const [creatingTask, setCreatingTask] = useState(false)
     const [updatingTask, setUpdatingTask] = useState()
@@ -39,14 +38,6 @@ export default function IndexProvider({children}){
             console.log(e)
             setLoading(false)
         })
-    }
-
-    async function getCategories(){
-        api.get("/categorie")
-        .then(res => {
-            setCategories(res.data)
-        })
-        .catch(e => console.log(e))
     }
 
     async function createTask(title, desc, primeira_hora, ultima_hora, categorie){
