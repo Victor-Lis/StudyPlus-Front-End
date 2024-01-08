@@ -2,12 +2,10 @@ import React, { useContext } from 'react'
 import { Container, Categorie } from './styles'
 
 import { CategorieContext } from '../../../Contexts/categories'
-import { IndexContext } from '../../../Contexts/'
 
 export default function CategoriesColumn() {
 
-  const { categories } = useContext(IndexContext)
-  const { selectedCategorie, handleSetSelectedCategorie } = useContext(CategorieContext)
+  const { categories, selectedCategorie, handleSetSelectedCategorie } = useContext(CategorieContext)
 
   return (
     <Container>
