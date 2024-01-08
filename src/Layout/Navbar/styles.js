@@ -12,6 +12,8 @@ export const Header = styled.header`
     justify-content: space-between;
     padding: .5% 3%;
 
+    z-index: 1;
+
 `
 
 export const Bot = styled.div`

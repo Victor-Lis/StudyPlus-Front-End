@@ -5,6 +5,7 @@ import Navbar from '../Layout/Navbar';
 
 import Home from '../Components/Home';
 import Tasks from '../Components/Tasks';
+import Analysis from '../Components/Analysis'
 
 export default function Router() {
   return (
@@ -16,6 +17,7 @@ export default function Router() {
 
         <Route path='/' element={<Home/>}/>
         <Route path='/tasks' element={<Tasks/>}/>
+        <Route path='/analysis' element={<Analysis/>}/>
 
       </Routes>
 
