@@ -21,6 +21,8 @@ export const Card = styled.div`
     padding: 2% 3%;
     margin: 2.5% 1.5%;
 
+    min-width: 90%;
+
     display: flex;
     align-items: center;
     justify-content: center;

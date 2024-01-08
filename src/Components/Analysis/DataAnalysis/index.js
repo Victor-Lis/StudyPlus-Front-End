@@ -7,7 +7,8 @@ import { IndexContext } from '../../../Contexts/'
 export default function DataAnalysis() {
 
   const { categories } = useContext(IndexContext)
-  const { selectedCategorie, percentage, allTasks, categorieTasksCount, tasksWithCategorieInThisWeek, allTasksInThisWeek,} = useContext(CategorieContext)
+  const { selectedCategorie, percentage, allTasks, categorieTasksCount, tasksWithCategorieInThisWeek, 
+    allTasksInThisWeek, allHours, allHoursInCategorie } = useContext(CategorieContext)
 
   return (
     <Container>
@@ -22,6 +23,10 @@ export default function DataAnalysis() {
 
         <Card background={selectedCategorie?.color}>
           <CardTitle><CardStrong color={selectedCategorie?.color}>{tasksWithCategorieInThisWeek}</CardStrong>/{allTasksInThisWeek} tarefas essa semana tem a categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong></CardTitle>
+        </Card>
+
+        <Card background={selectedCategorie?.color}>
+          <CardTitle><CardStrong color={selectedCategorie?.color}>{allHoursInCategorie}</CardStrong>h de {allHours}h no total foram investidas na categoria <CardStrong color={selectedCategorie?.color}>{selectedCategorie?.title}</CardStrong></CardTitle>
         </Card>
 
     </Container>  
