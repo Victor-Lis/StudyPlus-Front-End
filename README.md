@@ -227,6 +227,11 @@ Visualizando categorias
 git clone https://github.com/Victor-Lis/StudyPlus-Front-End & git clone https://github.com/Victor-Lis/StudyPlus-Back-End
 ```
 
+Dentro de ambos os repositórios
+```
+npm i dependencies
+```
+
 ## Inicialização 
 No endereço do repositório do Front-End
 ```cmd
