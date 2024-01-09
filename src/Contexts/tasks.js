@@ -97,6 +97,10 @@ export default function TaskProvider({children}) {
 
     }
 
+    useEffect(() => {
+        getTasks()
+    }, [])
+
   return (
     <TaskContext.Provider value={{ 
         tasks, selectedDay, creatingTask, updatingTask,
