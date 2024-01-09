@@ -269,9 +269,6 @@ Visualizando categorias
 ![AnalysisScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Analysis%20-%201.png)
 ![AnalysisScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Analysis%20-%202.png)
 
-## Restante do projeto
-[Study+ BackEnd](https://github.com/Victor-Lis/StudyPlus-Back-End)
-
 ## Instalação do Projeto
 ```cmd
 git clone https://github.com/Victor-Lis/StudyPlus-Front-End & git clone https://github.com/Victor-Lis/StudyPlus-Back-End
@@ -292,6 +289,9 @@ No endereço do repositório do Back-End
 ```cmd
 npm run dev
 ```
+
+## Restante do projeto
+[Study+ BackEnd](https://github.com/Victor-Lis/StudyPlus-Back-End)
 
 ## Autores
 
