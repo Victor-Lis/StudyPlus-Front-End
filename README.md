@@ -244,7 +244,7 @@ export default function DataAnalysis() {
 
 ### Screenshots
 
-#### Home 
+#### Início 
 ![HomeScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%201.png)
 
 ![HomeScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Home%20-%202.png)
@@ -263,6 +263,11 @@ Visualizando categorias
 ![Criando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Criando%20Categoria.png)
 
 ![Editando Categoria](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Tarefas%20-%20Editando%20Categoria.png)
+
+#### Análise 
+
+![AnalysisScreen - 1](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Analysis%20-%201.png)
+![AnalysisScreen - 2](https://github.com/Victor-Lis/StudyPlus-Front-End/blob/master/src/ProjectImages/Analysis%20-%202.png)
 
 ## Restante do projeto
 [Study+ BackEnd](https://github.com/Victor-Lis/StudyPlus-Back-End)
