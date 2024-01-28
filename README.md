@@ -1,4 +1,4 @@
-# Study+ Front End
+# Study+ Front End - Versão em React Vanilla
 
 [Study+ BackEnd](https://github.com/Victor-Lis/StudyPlus-Back-End)
 
